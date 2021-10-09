@@ -1,0 +1,257 @@
+{
+  "command": [
+    {
+      "name": "install",
+      "perms": [
+        "*",
+        "gründer",
+        "moderator",
+        "admin"
+      ],
+      "actions": [
+        {
+          "name": "installing1",
+          "category": "Channel Action",
+          "type": "Create Channel",
+          "channelname": "ticket-erstellen!",
+          "chancategory": "Support",
+          "reason": "",
+          "channeltype": "Text",
+          "savetovariable": "",
+          "savetovariabletype": "temp"
+        },
+        {
+          "name": "role1",
+          "category": "Server Action",
+          "type": "Add Role to Server",
+          "rolename": "Ticket",
+          "color": "1736FF",
+          "position": "",
+          "hoist": "BOOL_TRUE@@",
+          "mentionable": "BOOL_TRUE@@",
+          "savetovariable": "",
+          "savetovariabletype": "temp"
+        },
+        {
+          "name": "role1_1",
+          "category": "Server Action",
+          "type": "Add Role to Server",
+          "rolename": "Ticket+",
+          "color": "1736FF",
+          "position": "",
+          "hoist": "BOOL_TRUE@@",
+          "mentionable": "BOOL_TRUE@@",
+          "savetovariable": "",
+          "savetovariabletype": "temp"
+        },
+        {
+          "name": "ticket",
+          "category": "Message",
+          "type": "Send Embed",
+          "channelname": "ticket-erstellen",
+          "color": "FFFFFF",
+          "title": "Dress-Ticket",
+          "url": "",
+          "authorname": "Dress, you vision is good!",
+          "authorimageurl": "${dbsVars.guild.iconURL}",
+          "authorlink": "",
+          "description": "**Um ein Ticket zu erstellen mit 🎫reagieren**",
+          "thumbnail": "",
+          "image": "",
+          "footer": "",
+          "timestamp": "BOOL_TRUE@@",
+          "savetovariable": "createticket",
+          "savetovariabletype": "temp"
+        },
+        {
+          "name": "ticket2",
+          "category": "Reaction",
+          "type": "Add Reaction Listener",
+          "reactionActions": {
+            "🎫": [
+              {
+                "name": "ticket22",
+                "category": "Channel Action",
+                "type": "Create Channel",
+                "channelname": "ticket-${tempVars.createticketunnötig.displayName}",
+                "chancategory": "Support",
+                "reason": "",
+                "channeltype": "Text",
+                "savetovariable": "",
+                "savetovariabletype": "temp"
+              },
+              {
+                "name": "Standard",
+                "category": "Message",
+                "type": "Send Message",
+                "channelname": "ticket-${tempVars.createticketunnötig.displayName}",
+                "messagetext": "Hey <@${tempVars.createticketunnötig.id}>, bitte beschreibe dein Problem das dir ein Support helfen kann.",
+                "savetovariable": "ticketend",
+                "savetovariabletype": "temp"
+              },
+              {
+                "name": "f",
+                "category": "Bot Action",
+                "type": "Set Bot Activity",
+                "activityname": "Dress-Ticket Alpha v1.0",
+                "activitytype": "LISTENING",
+                "streamurl": ""
+              }
+            ]
+          },
+          "message": "${tempVars.createticket.id}",
+          "duration": "0",
+          "reactionemoji": "createticketuserto",
+          "reactionuser": "createticketunnötig",
+          "react": "BOOL_TRUE@@"
+        }
+      ]
+    },
+    {
+      "name": "claim",
+      "perms": [
+        "*",
+        "gründer",
+        "ticket+",
+        "ticket",
+        "a.s.",
+        "supporter",
+        "moderator",
+        "admin"
+      ],
+      "actions": [
+        {
+          "name": "claim11",
+          "category": "Channel Action",
+          "type": "Delete All Messages",
+          "channelname": "${dbsVars.CommandChannel.id}",
+          "msgcount": "1"
+        },
+        {
+          "name": "claim1",
+          "category": "Message",
+          "type": "Send Message",
+          "channelname": "${dbsVars.CommandChannel.id}",
+          "messagetext": "-----------------------------------------------------------------------------\nDu wirst nun von <@${dbsVars.CommandAuthor.id}> unterstützt.\n-----------------------------------------------------------------------------",
+          "savetovariable": "",
+          "savetovariabletype": "temp"
+        }
+      ]
+    },
+    {
+      "name": "delete",
+      "perms": [
+        "*",
+        "gründer",
+        "ticket+",
+        "a.s.",
+        "moderator",
+        "admin"
+      ],
+      "actions": [
+        {
+          "name": "deleteing",
+          "category": "Channel Action",
+          "type": "Delete Channel",
+          "channelname": "${dbsVars.CommandChannel.id}",
+          "reason": "Supporter hat delete eingerufen."
+        }
+      ]
+    },
+    {
+      "name": "open",
+      "perms": [
+        "*",
+        "gründer",
+        "ticket",
+        "ticket+",
+        "moderator",
+        "supporter",
+        "a.s.",
+        "admin"
+      ],
+      "actions": [
+        {
+          "name": "claim11_1",
+          "category": "Channel Action",
+          "type": "Delete All Messages",
+          "channelname": "${dbsVars.CommandChannel.id}",
+          "msgcount": "1"
+        },
+        {
+          "name": "claim1_1",
+          "category": "Message",
+          "type": "Send Message",
+          "channelname": "${dbsVars.CommandChannel.id}",
+          "messagetext": "-----------------------------------------------------------------------------\nDein Ticket wurde von <@${dbsVars.CommandAuthor.id}> geöffnet.\n-----------------------------------------------------------------------------",
+          "savetovariable": "",
+          "savetovariabletype": "temp"
+        }
+      ]
+    },
+    {
+      "name": "close",
+      "perms": [
+        "*",
+        "gründer",
+        "admin",
+        "moderator",
+        "a.s.",
+        "supporter",
+        "ticket",
+        "ticket+"
+      ],
+      "actions": [
+        {
+          "name": "claim11_1_1",
+          "category": "Channel Action",
+          "type": "Delete All Messages",
+          "channelname": "${dbsVars.CommandChannel.id}",
+          "msgcount": "1"
+        },
+        {
+          "name": "claim1_1_1",
+          "category": "Message",
+          "type": "Send Message",
+          "channelname": "${dbsVars.CommandChannel.id}",
+          "messagetext": "-----------------------------------------------------------------------------\nDein Ticket wurde von <@${dbsVars.CommandAuthor.id}> geschlossen.\n-----------------------------------------------------------------------------",
+          "savetovariable": "",
+          "savetovariabletype": "temp"
+        }
+      ]
+    },
+    {
+      "name": "verify",
+      "actions": [
+        {
+          "name": "CodeforVerify",
+          "category": "Variable",
+          "type": "Generate Random Number",
+          "varname": "codeverifyRN",
+          "min": "000000",
+          "max": "999999",
+          "savevartype": "temp"
+        },
+        {
+          "name": "codeSent",
+          "category": "Message",
+          "type": "Send Embed",
+          "channelname": "${dbsVars.CommandChannel.id}",
+          "color": "2676FF",
+          "title": "Dress, you vision is good!",
+          "url": "",
+          "authorname": "",
+          "authorimageurl": "",
+          "authorlink": "",
+          "description": "**Ihr Verifizierungscode lautet: ${tempVars.codeverifyRN}**",
+          "thumbnail": "",
+          "image": "",
+          "footer": "Verifizierungsystem Alpha v1.0",
+          "timestamp": "BOOL_TRUE@@",
+          "savetovariable": "",
+          "savetovariabletype": "temp"
+        }
+      ]
+    }
+  ]
+}
